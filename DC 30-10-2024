@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(int argc, char** argv) {
+    int n;
+    cin >> n;
+    vector<long long> arr(n);
+    vector<int> unit(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+        unit[i] = arr[i] % 10;
+    }
+
+    int maxUnit = 0;
+    if (n > 0) {
+        maxUnit = arr[n - 1] % 10;
+    }
+    
+    vector<int> res;
+    for (int i = 0; i < n; i++) {
+        if (maxUnit == unit[i]) {
+            res.push_back(arr[i]);
+        }
+    }
+
+    for (int i = res.size() - 1; i >= 0; i--) {
+        cout << res[i];
+        if (i != 0) cout << " "; // Avoid trailing space
+    }
+    cout << endl;
+
+    return 0;
+}
