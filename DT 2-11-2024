@@ -9,10 +9,6 @@ int main(int argc, char** argv) {
     for(int i = 0; i < n; i++){
         cin >> G[i] >> T[i] >> P[i];
     }
-    
-    float avg = 0.0;
-    float male_avg = 0.0;
-    float fem_avg = 0.0;
     float c = 0;
     float mc = 0;
     float fc = 0;
