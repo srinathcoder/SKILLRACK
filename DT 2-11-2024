@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(int argc, char** argv) {
+    int n;
+    cin >> n;
+    vector<char> G(n);
+    vector<int> T(n), P(n);
+    for(int i = 0; i < n; i++){
+        cin >> G[i] >> T[i] >> P[i];
+    }
+    
+    float avg = 0.0;
+    float male_avg = 0.0;
+    float fem_avg = 0.0;
+    float c = 0;
+    float mc = 0;
+    float fc = 0;
+    float p = 0;
+    float mp = 0;
+    float fp = 0;
+    
+    for(int i = 0; i < n; i++){
+        bool is_pass = (T[i] >= 38 && P[i] >= 13);
+        c += 1.0;
+        if(is_pass){
+            p += 1.0;
+        }
+        
+        if(G[i] == 'M'){
+            mc += 1.0;
+            if(is_pass){
+                mp += 1.0;
+            }
+        } else if(G[i] == 'F'){
+            fc += 1.0;
+            if(is_pass){
+                fp += 1.0;
+            }
+        }
+    }
+    
+    double ans = (p / c) * 100.00;
+    double male_ans = (mp / mc) * 100.00;
+    double female_ans = (fp / fc) * 100.00;
+    cout << ans << endl;
+    cout << male_ans << endl;
+    cout << female_ans << endl;
+}
