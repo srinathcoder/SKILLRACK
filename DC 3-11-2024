@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
     rig_x--;
     rig_y--;
     left_x--;
-    left_y;
+    left_y--;
 
     topToLeft(mat, top_x, top_y, left_x, left_y, top_x, top_y);
     leftToBottom(mat, left_x, left_y, bot_x, bot_y, left_x, left_y);
