@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void rightToTop(vector<vector<char>>& mat, int rx, int ry, int tx, int ty, int i, int j) {
+    if (i == tx && j == ty) {
+        mat[i][j] = '*';
+        return;
+    } else {
+        mat[i][j] = '*';
+        rightToTop(mat, rx, ry, tx, ty, --i, --j);
+    }
+}
+
+void bottomToRight(vector<vector<char>>& mat, int bx, int by, int rx, int ry, int i, int j) {
+    if (i == rx && j == ry) {
+        mat[i][j] = '*';
+        return;
+    } else {
+        mat[i][j] = '*';
+        bottomToRight(mat, bx, by, rx, ry, --i, ++j);
+    }
+}
+
+void leftToBottom(vector<vector<char>>& mat, int lx, int ly, int bx, int by, int i, int j) {
+    if (i == bx && j == by) {
+        mat[i][j] = '*';
+        return;
+    } else {
+        mat[i][j] = '*';
+        leftToBottom(mat, lx, ly, bx, by, i + 1, j + 1);
+    }
+}
+
+void topToLeft(vector<vector<char>>& mat, int tx, int ty, int lx, int ly, int i, int j) {
+    if (i == lx && j == ly) {
+        mat[i][j] = '*';
+        return;
+    } else {
+        mat[i][j] = '*';
+        topToLeft(mat, tx, ty, lx, ly, i + 1, --j);
+    }
+}
+
+int main(int argc, char** argv) {
+    int r, c;
+    cin >> r >> c;
+    vector<vector<char>> mat(r, vector<char>(c));
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            cin >> mat[i][j];
+        }
+    }
+
+    int top_x, top_y, rig_x, rig_y, bot_x, bot_y, left_x, left_y;
+    cin >> top_x >> top_y;
+    cin >> rig_x >> rig_y;
+    cin >> bot_x >> bot_y;
+    cin >> left_x >> left_y;
+    
+    top_x--;
+    top_y--;
+    bot_x--;
+    bot_y--;
+    rig_x--;
+    rig_y--;
+    left_x--;
+    left_y;
+
+    topToLeft(mat, top_x, top_y, left_x, left_y, top_x, top_y);
+    leftToBottom(mat, left_x, left_y, bot_x, bot_y, left_x, left_y);
+    bottomToRight(mat, bot_x, bot_y, rig_x, rig_y, bot_x, bot_y);
+    rightToTop(mat, rig_x, rig_y, top_x, top_y, rig_x, rig_y);
+
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            cout << mat[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
